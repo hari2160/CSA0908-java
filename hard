@@ -1,0 +1,173 @@
+1)
+import java.util.Scanner;
+public class DaysConverter {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the number of days: ");
+        int totalDays = scanner.nextInt();
+
+        int years = totalDays / 365;
+        int remainingDays = totalDays % 365;
+
+        int weeks = remainingDays / 7;
+        remainingDays = remainingDays % 7;
+
+        System.out.println("The given number of days is equivalent to:");
+        System.out.println(years + " years, " + weeks + " weeks, and " + remainingDays + " days.");
+    }
+}
+
+2)import java.util.Scanner;
+public class CollegeUserDetails {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the number of student users: ");
+        int studentUsers = scanner.nextInt();
+
+        System.out.print("Enter the number of staff users: ");
+        int staffUsers = scanner.nextInt();
+
+        int nonTeachingStaffUsers = staffUsers / 3;
+
+        int totalUsers = studentUsers + staffUsers + nonTeachingStaffUsers;
+
+        System.out.println("The number of student users is: " + studentUsers);
+        System.out.println("The number of staff users is: " + staffUsers);
+        System.out.println("The number of non-teaching staff users is: " + nonTeachingStaffUsers);
+        System.out.println("The total number of users is: " + totalUsers);
+    }
+}
+
+3)import java.util.Scanner;
+public class FactorFinder {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a number: ");
+        int number = scanner.nextInt()
+        System.out.print("Enter the value of n: ");
+        int n = scanner.nextInt();
+        int count = 0;
+        int[] factors = new int[number];
+        for (int i = 1; i <= number; i++) {
+            if (number % i == 0) {
+                factors[count] = i;
+                count++;
+            }
+        }
+
+        System.out.println("The number of factors of " + number + " is: " + count);
+
+        if (n <= count) {
+            System.out.println("The " + n + "th factor of " + number + " is: " + factors[n - 1]);
+        } else {
+            System.out.println("The " + n + "th factor does not exist.");
+        }
+    }
+}
+
+4)import java.util.Scanner;
+public class PrimeNumberGenerator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the value of n: ");
+        int n = scanner.nextInt();
+        System.out.print("Enter the number of prime numbers to print after the nth prime: ");
+        int numToPrint = scanner.nextInt();
+        int count = 0;
+        int num = 2;
+        while (true) {
+            if (isPrime(num)) {
+                count++;
+                if (count == n) {
+                    break;
+                }
+            }
+            num++;
+        }
+        System.out.println("The " + n + "th prime number is: " + num);
+        for (int i = 0; i < numToPrint; i++) {
+            num++;
+            while (!isPrime(num)) {
+                num++;
+            }
+            System.out.println("Prime number " + (i + 1) + " after the " + n + "th prime: " + num);
+        }
+    }
+    public static boolean isPrime(int num) {
+        if (num <= 1) {
+            return false;
+        }
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+5)import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+public class PerfectSquareGenerator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the start of the range: ");
+        int start = scanner.nextInt();
+        System.out.print("Enter the end of the range: ");
+        int end = scanner.nextInt();
+        List<Integer> perfectSquares = new ArrayList<>();
+        for (int i = start; i <= end; i++) {
+            int sqrt = (int) Math.sqrt(i);
+            if (sqrt * sqrt == i) {
+                int digitSum = getDigitSum(i);
+                if (digitSum < 10) {
+                    perfectSquares.add(i);
+                }
+            }
+        }
+
+        System.out.println("List of perfect squares with digit sum less than 10: " + perfectSquares);
+    }
+
+    public static int getDigitSum(int num) {
+        int sum = 0;
+        while (num > 0) {
+            sum += num % 10;
+            num /= 10;
+        }
+        return sum;
+    }
+}
+
+6)import java.util.Scanner;
+public class PermutationGenerator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a number: ");
+        int num = scanner.nextInt();
+        String strNum = String.valueOf(num);
+        char[] chars = strNum.toCharArray();
+        permutation(chars, 0, chars.length - 1);
+    }
+
+    public static void permutation(char[] chars, int l, int r) {
+        if (l == r)
+            System.out.println(new String(chars));
+        else {
+            for (int i = l; i <= r; i++) {
+                swap(chars, l, i);
+                permutation(chars, l + 1, r);
+                swap(chars, l, i); // backtrack
+            }
+        }
+    }
+
+    public static void swap(char[] chars, int i, int j) {
+        char temp = chars[i];
+        chars[i] = chars[j];
+        chars[j] = temp;
+    }
+}
