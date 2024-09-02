@@ -62,3 +62,169 @@ public class PalindromeString {
         }
     }
 }
+
+4.)import java.util.Scanner;
+public class ReverseNumber {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a number: ");
+        int number = scanner.nextInt();
+        scanner.close();
+
+        int reverse = 0;
+        while (number != 0) {
+            int remainder = number % 10;
+            reverse = reverse * 10 + remainder;
+            number = number / 10;
+        }
+
+        System.out.println("Reversed number: " + reverse);
+    }
+}
+
+5) import java.util.Scanner;
+public class EligibleToVote {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter your age: ");
+        int age = scanner.nextInt();
+        scanner.close();
+
+        if (age >= 18) {
+            System.out.println("You are eligible to vote.");
+        } else {
+            System.out.println("You are not eligible to vote. You must be at least 18 years old.");
+        }
+    }
+}
+
+6)import java.util.Scanner;
+public class LCMandGCD {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the first number: ");
+        int num1 = scanner.nextInt();
+        System.out.print("Enter the second number: ");
+        int num2 = scanner.nextInt();
+        scanner.close();
+
+        int gcd = findGCD(num1, num2);
+        int lcm = findLCM(num1, num2, gcd);
+
+        System.out.println("GCD of " + num1 + " and " + num2 + " is: " + gcd);
+        System.out.println("LCM of " + num1 + " and " + num2 + " is: " + lcm);
+    }
+
+    public static int findGCD(int num1, int num2) {
+        if (num2 == 0) {
+            return num1;
+        }
+        return findGCD(num2, num1 % num2);
+    }
+
+    public static int findLCM(int num1, int num2, int gcd) {
+        return (num1 * num2) / gcd;
+    }
+}
+
+7)import java.util.Scanner;
+public class RightTriangleStarPattern {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the number of rows: ");
+        int rows = scanner.nextInt();
+        scanner.close();
+
+        for (int i = 1; i <= rows; i++) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
+    }
+}
+8)import java.util.Scanner;
+public class SimpleInterest {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the principal amount: ");
+        double principal = scanner.nextDouble();
+        System.out.print("Enter the rate of interest (in %): ");
+        double rate = scanner.nextDouble();
+        System.out.print("Enter the time period (in years): ");
+        double time = scanner.nextDouble();
+        scanner.close();
+
+        double interest = calculateSimpleInterest(principal, rate, time);
+
+        System.out.println("The simple interest is: " + interest);
+    }
+
+    public static double calculateSimpleInterest(double principal, double rate, double time) {
+        return (principal * rate * time) / 100;
+    }
+}
+
+9)import java.util.Scanner;
+public class MatrixMultiplication {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the number of rows for matrix A: ");
+        int rowsA = scanner.nextInt();
+        System.out.print("Enter the number of columns for matrix A: ");
+        int colsA = scanner.nextInt();
+
+        System.out.print("Enter the number of rows for matrix B: ");
+        int rowsB = scanner.nextInt();
+        System.out.print("Enter the number of columns for matrix B: ");
+        int colsB = scanner.nextInt();
+
+        if (colsA != rowsB) {
+            System.out.println("Matrix multiplication is not possible.");
+            return;
+        }
+
+        int[][] matrixA = new int[rowsA][colsA];
+        int[][] matrixB = new int[rowsB][colsB];
+        int[][] result = new int[rowsA][colsB];
+
+        System.out.println("Enter elements of matrix A:");
+        for (int i = 0; i < rowsA; i++) {
+            for (int j = 0; j < colsA; j++) {
+                matrixA[i][j] = scanner.nextInt();
+            }
+        }
+
+        System.out.println("Enter elements of matrix B:");
+        for (int i = 0; i < rowsB; i++) {
+            for (int j = 0; j < colsB; j++) {
+                matrixB[i][j] = scanner.nextInt();
+            }
+        }
+
+        multiplyMatrices(matrixA, matrixB, result);
+
+        System.out.println("The result of matrix multiplication is:");
+        printMatrix(result);
+    }
+
+    public static void multiplyMatrices(int[][] matrixA, int[][] matrixB, int[][] result) {
+        for (int i = 0; i < result.length; i++) {
+            for (int j = 0; j < result[0].length; j++) {
+                for (int k = 0; k < matrixA[0].length; k++) {
+                    result[i][j] += matrixA[i][k] * matrixB[k][j];
+                }
+            }
+        }
+    }
+
+    public static void printMatrix(int[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
